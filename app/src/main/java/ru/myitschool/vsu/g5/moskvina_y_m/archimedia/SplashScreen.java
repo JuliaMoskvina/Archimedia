@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.MainActivity;
-
 public class SplashScreen extends AppCompatActivity {
 
     @Override
