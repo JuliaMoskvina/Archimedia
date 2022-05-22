@@ -11,4 +11,8 @@
     <string name="menu_home">Поиск</string>
     <string name="menu_gallery">Мои события</string>
     <string name="menu_slideshow">Тренировки</string>
+    <string name="title_activity_bottom_navigation">Bottom_Navigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
