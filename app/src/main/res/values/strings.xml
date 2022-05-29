@@ -15,4 +15,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="physics">Физика</string>
+    <string name="math">Математика</string>
+    <string name="it">Информатика</string>
 </resources>
