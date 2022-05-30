@@ -78,8 +78,10 @@ public class OlympsAdapter extends BaseAdapter {
 
 
     Olympiads getOlympiads(int position) {
+
         return ((Olympiads) getItem(position));
     }
+
 
 
 

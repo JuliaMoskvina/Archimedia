@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,6 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities.Olympiads;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.ui.home.HomeFragment;
 
 public class OlympiadsList extends AppCompatActivity {
     private final String baseUrl = "https://raw.githubusercontent.com/JuliaMoskvina/files_for_archimedia/main/";
@@ -46,6 +49,19 @@ public class OlympiadsList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Olympiads olympiads = adapter.getOlympiads(i);
+                Intent intent = new Intent(OlympiadsList.this, FullOlympiadInformation.class);
+                String university = olympiads.getUniversity();
+                String name = olympiads.getName();
+                //Log.i("Name:", name );
+                String url= olympiads.getUrl();
+                //.i("subject", url);
+                Date date = olympiads.getDate();
+                //Log.i("date", String.valueOf(date));
+                String[] data = new String [] {name, university, url};
+                intent.putExtra("data", data);
+                startActivity(intent);
+
+
 
             }
         });
