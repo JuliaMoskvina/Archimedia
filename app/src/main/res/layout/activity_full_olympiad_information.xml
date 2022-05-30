@@ -9,13 +9,16 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:fontFamily="@fonts/"/>
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+       />
+    <TextView
+        android:id="@+id/id_university"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
 
-
-
+        />
 
 
 

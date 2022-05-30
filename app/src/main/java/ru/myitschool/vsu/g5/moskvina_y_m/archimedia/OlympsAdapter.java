@@ -66,10 +66,10 @@ public class OlympsAdapter extends BaseAdapter {
         Olympiads p = getOlympiads(position);
 
         TextView nameTV = view.findViewById(R.id.name);
-        TextView universityTV = view.findViewById(R.id.university);
+        //TextView universityTV = view.findViewById(R.id.university);
 
         nameTV.setText(p.getName());
-        universityTV.setText(p.getUniversity());
+        //universityTV.setText(p.getUniversity());
 
 
 

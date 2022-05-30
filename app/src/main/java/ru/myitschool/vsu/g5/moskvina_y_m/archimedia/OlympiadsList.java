@@ -23,6 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities.Materials;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities.Olympiads;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.ui.home.HomeFragment;
 
@@ -57,6 +58,14 @@ public class OlympiadsList extends AppCompatActivity {
                 //.i("subject", url);
                 Date date = olympiads.getDate();
                 //Log.i("date", String.valueOf(date));
+                List<Materials> materials = olympiads.getMaterials();
+                String[] mat = new String[materials.size()*2];
+                for(int j=0; j<mat.length; j+=2 ){
+                    mat[j]=materials.get(j/2).getName();
+                    mat[j+1] = materials.get(j/2).getContent();
+                }
+                intent.putExtra("materials", mat);
+
                 String[] data = new String [] {name, university, url};
                 intent.putExtra("data", data);
                 startActivity(intent);
