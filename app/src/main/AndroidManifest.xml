@@ -15,9 +15,6 @@
             android:name=".FavouriteMaterials"
             android:exported="true" />
         <activity
-            android:name=".FavouriteOlympiads"
-            android:exported="true" />
-        <activity
             android:name=".FullOlympiadInformation"
             android:exported="true" />
         <activity

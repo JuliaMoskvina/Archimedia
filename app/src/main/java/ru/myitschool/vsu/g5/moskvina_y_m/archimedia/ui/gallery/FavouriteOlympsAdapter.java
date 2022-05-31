@@ -1,34 +1,34 @@
-package ru.myitschool.vsu.g5.moskvina_y_m.archimedia;
+package ru.myitschool.vsu.g5.moskvina_y_m.archimedia.ui.gallery;
 
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.MaterialsDB;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.OlympiadsDB;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.R;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities.Olympiads;
 
+public class FavouriteOlympsAdapter extends BaseAdapter {
+    Context ctx;
+    LayoutInflater lInflater;
+    ArrayList<OlympiadsDB> objects;
 
-public class FavouriteMaterialsAdapter extends BaseAdapter {
-    private Context ctx;
-    private LayoutInflater lInflater;
-    private ArrayList<MaterialsDB> objects;
-
-    FavouriteMaterialsAdapter(Context context) {
+    FavouriteOlympsAdapter(Context context) {
         ctx = context;
         objects = new ArrayList<>();
         lInflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-    public void refresh(List<MaterialsDB> fmaterials){
-        if(fmaterials!=null){
+    public void refresh(List<OlympiadsDB> folympiads){
+        if(folympiads!=null){
             objects.clear();
-            objects.addAll(fmaterials);
+            objects.addAll(folympiads);
             notifyDataSetChanged();
         }
     }
@@ -60,19 +60,14 @@ public class FavouriteMaterialsAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.list_item, parent, false);
         }
 
-       MaterialsDB mdb = getMaterialsDB(position);
+        OlympiadsDB odb = getOlympiadsDB(position);
         return view;
     }
 
 
-    MaterialsDB getMaterialsDB(int position) {
-        return ((MaterialsDB) getItem(position));
+    OlympiadsDB getOlympiadsDB(int position) {
+        return (OlympiadsDB) getItem(position);
     }
 
+
 }
-
-
-
-
-
-
