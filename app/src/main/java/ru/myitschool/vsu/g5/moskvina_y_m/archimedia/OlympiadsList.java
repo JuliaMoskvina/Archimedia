@@ -59,6 +59,9 @@ public class OlympiadsList extends AppCompatActivity {
                 Date date = olympiads.getDate();
                 //Log.i("date", String.valueOf(date));
                 List<Materials> materials = olympiads.getMaterials();
+                if(materials==null){
+                    materials = new ArrayList<>();
+                }
                 String[] mat = new String[materials.size()*2];
                 for(int j=0; j<mat.length; j+=2 ){
                     mat[j]=materials.get(j/2).getName();
