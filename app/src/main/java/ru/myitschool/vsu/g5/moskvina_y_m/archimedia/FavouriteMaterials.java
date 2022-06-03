@@ -1,7 +1,5 @@
 package ru.myitschool.vsu.g5.moskvina_y_m.archimedia;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,15 +8,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
 
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.DataBase;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.MaterialsDB;
-import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.OlympiadsDB;
-import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.ui.gallery.GalleryFragment;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.adapters.FavouriteMaterialsAdapter;
 
 public class FavouriteMaterials extends AppCompatActivity {
     ListView lv;
@@ -42,6 +38,13 @@ public class FavouriteMaterials extends AppCompatActivity {
 
         new FavouriteMaterials.LoadAllMaterialsTask(this, i, name)
                 .execute();
+
+       // if ( materialsDBS == null){
+            //setContentView(R.layout.ifempty);
+            //ImageView imv = (ImageView) findViewById(R.id.puzzle);
+           // TextView tv = (TextView) findViewById(R.id.puzzled);
+
+        //}
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 

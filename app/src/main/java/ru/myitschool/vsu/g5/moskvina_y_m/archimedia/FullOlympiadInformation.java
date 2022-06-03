@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -52,9 +53,25 @@ public class FullOlympiadInformation extends AppCompatActivity {
         TextView nameo = (TextView) findViewById(R.id.name_of_olympiad);
         nameo.setText(name);
 
-        TextView ouniversity = (TextView) findViewById(R.id.uni);
 
-        ouniversity.setText(university);
+
+        TextView ouniname = (TextView) findViewById(R.id.uni_name);
+        ouniname.setText(university);
+
+        TextView reg = (TextView) findViewById(R.id.reg);
+        Button site = (Button) findViewById(R.id.supbtn);
+        View.OnClickListener oonClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent siting = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(siting);
+            }
+
+        };
+        site.setOnClickListener(oonClickListener);
+
+
+
 
 
         Button like = (Button)findViewById(R.id.like);

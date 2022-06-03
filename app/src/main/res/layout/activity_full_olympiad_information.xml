@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/triangle"
     tools:context=".FullOlympiadInformation">
 
     <TextView
@@ -11,21 +12,45 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/name_of_olympiad"
-        android:textSize="40dp"/>
+        android:textSize="40sp"
+        />
     <TextView
         android:id="@+id/uni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
+        android:layout_marginTop="40dp"
+        android:text="Университет:"
+        android:textSize="30sp"
+        android:layout_below="@+id/name_of_olympiad"
         android:paddingLeft="10dp"
         />
-
     <TextView
-        android:id="@+id/url"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="60dp"
-        />
+        android:layout_marginLeft="35dp"
+        android:id="@+id/uni_name"
+        android:textSize="30sp"
+        android:layout_marginTop="145dp"
+        android:layout_toRightOf="@+id/uni"/>
+
+    <TextView
+        android:id="@+id/reg"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uni"
+        android:layout_marginTop="40sp"
+        android:text="Регистрация:"
+        android:paddingLeft="10dp"
+        android:textSize="30sp"/>
+    <Button
+        android:id="@+id/supbtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/reg"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="25dp"/>
+
 
     <Button
         android:text="Начинаю тренировки!"
@@ -34,6 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp" />
+
+
 
 
 </RelativeLayout>

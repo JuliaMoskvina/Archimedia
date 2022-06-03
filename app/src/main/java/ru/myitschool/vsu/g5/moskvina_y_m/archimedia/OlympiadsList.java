@@ -9,12 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,9 +21,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.adapters.OlympsAdapter;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities.Materials;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities.Olympiads;
-import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.ui.home.HomeFragment;
 
 public class OlympiadsList extends AppCompatActivity {
     private final String baseUrl = "https://raw.githubusercontent.com/JuliaMoskvina/files_for_archimedia/main/";
@@ -54,11 +52,11 @@ public class OlympiadsList extends AppCompatActivity {
                 Intent intent = new Intent(OlympiadsList.this, FullOlympiadInformation.class);
                 String university = olympiads.getUniversity();
                 String name = olympiads.getName();
-                Log.i("Name:", name );
+                //Log.i("Name:", name );
                 String url= olympiads.getUrl();
-                Log.i("subject", url);
+                //Log.i("subject", url);
                 long date = olympiads.getDate();
-                Log.i("date", String.valueOf(date));
+               //Log.i("date", String.valueOf(date));
                 intent.putExtra("date", date);
                 int subj_id = olympiads.getSubj_id();
                 intent.putExtra("subj_id", subj_id);

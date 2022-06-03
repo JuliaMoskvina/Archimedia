@@ -1,4 +1,4 @@
-package ru.myitschool.vsu.g5.moskvina_y_m.archimedia.ui.gallery;
+package ru.myitschool.vsu.g5.moskvina_y_m.archimedia.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -22,7 +22,7 @@ public class FavouriteOlympsAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     ArrayList<OlympiadsDB> objects;
 
-    FavouriteOlympsAdapter(Context context) {
+    public FavouriteOlympsAdapter(Context context) {
         ctx = context;
         objects = new ArrayList<>();
         lInflater = (LayoutInflater) ctx
@@ -75,7 +75,7 @@ public class FavouriteOlympsAdapter extends BaseAdapter {
     }
 
 
-    OlympiadsDB getOlympiadsDB(int position) {
+    public OlympiadsDB getOlympiadsDB(int position) {
         return (OlympiadsDB) getItem(position);
     }
 

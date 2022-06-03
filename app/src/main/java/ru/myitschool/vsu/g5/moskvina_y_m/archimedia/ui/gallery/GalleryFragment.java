@@ -1,6 +1,8 @@
 package ru.myitschool.vsu.g5.moskvina_y_m.archimedia.ui.gallery;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,19 +19,20 @@ import androidx.fragment.app.Fragment;
 import java.util.List;
 
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.DataBase;
-import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.MaterialsDB;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.OlympiadsDB;
-import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.FavouriteMaterialsAdapter;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.adapters.FavouriteMaterialsAdapter;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.MaterialsActivity;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.OlympiadsList;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.R;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.adapters.FavouriteOlympsAdapter;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.databinding.FragmentGalleryBinding;
 
 public class GalleryFragment extends Fragment {
     ListView lv;
     FavouriteOlympsAdapter foAdapter;
+    FavouriteMaterialsAdapter fmAdapter;
 
-    FavouriteMaterialsAdapter fmadapter;
+
 
 
     private FragmentGalleryBinding binding;
@@ -40,7 +43,8 @@ public class GalleryFragment extends Fragment {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         foAdapter = new FavouriteOlympsAdapter(this.getContext());
-        fmadapter = new FavouriteMaterialsAdapter(this.getContext());
+        fmAdapter = new FavouriteMaterialsAdapter(this.getContext());
+
 
 
 
@@ -59,44 +63,48 @@ public class GalleryFragment extends Fragment {
             }
 
         });
+
+
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+
+
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
+                OlympiadsDB odb = foAdapter.getOlympiadsDB(i);
 
+                new AlertDialog.Builder(ccontext)
+                        .setIcon(R.drawable.cant_und)
+                        .setTitle("Точно?")
+                        .setMessage("Вы уверены, что пришло время её удалить?")
+                        .setPositiveButton("Абсолютно!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DataBase db = new DataBase(ccontext);
 
-              remove(i);
+                                db.deleteOlympiads(odb.getId());
+                                db.deleteMaterials(odb.getId());
+
+                                DataBase dataBase = new DataBase(ccontext);
+
+                                foAdapter.refresh(dataBase.selectAllOlympiads());
+                                foAdapter.notifyDataSetChanged();
+                                foAdapter.notifyDataSetInvalidated();
+                            }
+                        })
+                        .setNegativeButton("Нет...", null)
+                        .show();
+
 
 
 
                 return true;
             }
-            private void remove(int i) {
-
-                DataBase db = new DataBase(ccontext );
-                db.deleteOlympiads(i);
-                db.deleteMaterials(i);
 
 
-
-
-                foAdapter.notifyDataSetChanged();
-                foAdapter.notifyDataSetInvalidated();
-
-
-
-
-                //DataBase db = new DataBase(galleryFragment.getContext());
-                //db.deleteOlympiads(i);
-                //List<OlympiadsDB> listo = db.selectAllOlympiads();
-                //foAdapter.refresh(listo);
-            }
 
 
         });
-
-
-
-
 
 
         return root;
