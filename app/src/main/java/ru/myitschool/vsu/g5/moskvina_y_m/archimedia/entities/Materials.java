@@ -1,17 +1,19 @@
 package ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities;
 
 public class Materials {
-
-    public String name;
     public String content;
+    public String u_name;
+    public String name;
 
-    public Materials( String name, String content) {
-
+    public Materials(String name, String content, String u_name) {
+        this.u_name = u_name;
         this.name = name;
         this.content = content;
     }
 
-
+    public String getU_name() {
+        return u_name;
+    }
 
     public String getName() {
         return name;
@@ -21,7 +23,9 @@ public class Materials {
         return content;
     }
 
-
+    public void setU_name(String u_name) {
+        this.u_name = u_name;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -31,3 +35,4 @@ public class Materials {
         this.content = content;
     }
 }
+

@@ -32,6 +32,7 @@ public class OlympiadsList extends AppCompatActivity {
     private ListView listView;
     private int subject_id;
     private OlympsAdapter adapter;
+    public static final String OLYMPIAD_ID = "olympiad_id";
 
 
 
@@ -53,34 +54,39 @@ public class OlympiadsList extends AppCompatActivity {
                 Intent intent = new Intent(OlympiadsList.this, FullOlympiadInformation.class);
                 String university = olympiads.getUniversity();
                 String name = olympiads.getName();
-                //Log.i("Name:", name );
+                Log.i("Name:", name );
                 String url= olympiads.getUrl();
-                //.i("subject", url);
-                Date date = olympiads.getDate();
-                //Log.i("date", String.valueOf(date));
+                Log.i("subject", url);
+                long date = olympiads.getDate();
+                Log.i("date", String.valueOf(date));
+                intent.putExtra("date", date);
+                int subj_id = olympiads.getSubj_id();
+                intent.putExtra("subj_id", subj_id);
+               int id = olympiads.getId();
+                intent.putExtra("id", id);
+
                 List<Materials> materials = olympiads.getMaterials();
                 if(materials==null){
                     materials = new ArrayList<>();
                 }
-                String[] mat = new String[materials.size()*2];
-                for(int j=0; j<mat.length; j+=2 ){
-                    mat[j]=materials.get(j/2).getName();
-                    mat[j+1] = materials.get(j/2).getContent();
+                String[] mat = new String[materials.size()*3];
+                for(int j=0; j<mat.length; j+=3 ){
+                    mat[j]=materials.get(j/3).getName();
+                    mat[j+1] = materials.get(j/3).getContent();
+                    mat[j+2] = materials.get(j/3).getU_name();
+
                 }
+                //Log.i("mat", mat[1]);
+
                 intent.putExtra("materials", mat);
 
                 String[] data = new String [] {name, university, url};
                 intent.putExtra("data", data);
                 startActivity(intent);
 
-
-
             }
         });
         getOlympiads();
-
-
-
 
     }
     public void getOlympiads(){

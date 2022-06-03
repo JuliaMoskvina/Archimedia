@@ -2,10 +2,15 @@ package ru.myitschool.vsu.g5.moskvina_y_m.archimedia;
 
 import android.content.Context;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -57,17 +62,24 @@ public class FavouriteMaterialsAdapter extends BaseAdapter {
         // используем созданные, но не используемые view
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.list_item, parent, false);
+            view = lInflater.inflate(R.layout.fm_item, parent, false);
         }
 
-       MaterialsDB mdb = getMaterialsDB(position);
+        MaterialsDB mdb = getMaterialsDB(position);
+
+        TextView material = view.findViewById(R.id.fmaterial);
+        material.setText(mdb.getU_name());
+
+
+
+
         return view;
     }
 
 
-    MaterialsDB getMaterialsDB(int position) {
-        return ((MaterialsDB) getItem(position));
-    }
+        MaterialsDB getMaterialsDB ( int position){
+            return ((MaterialsDB) getItem(position));
+        }
 
 }
 

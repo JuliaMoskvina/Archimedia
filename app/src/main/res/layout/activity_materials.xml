@@ -6,6 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".MaterialsActivity"
     android:background="@drawable/clouds">
+    <Button
+        android:id="@+id/tasks"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:text="Задания"
+        android:textSize="20sp">
+    </Button>
+
+    <Button
+        android:id="@+id/books"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:text="Книги"
+        android:textSize="20sp">
+    </Button>
+
+    <Button
+        android:id="@+id/videos"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:text="Видео"
+        android:textSize="20sp">
+    </Button>
+
+
 
 
 

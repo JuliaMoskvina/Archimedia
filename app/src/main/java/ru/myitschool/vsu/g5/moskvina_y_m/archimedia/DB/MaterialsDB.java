@@ -7,12 +7,14 @@ public class MaterialsDB implements Serializable {
     private String name;
     private String content;
     private long olympiads_id;
+    private String u_name;
 
-    public MaterialsDB(long id, String name, String content, long olympiads_id) {
+    public MaterialsDB(long id, String name, String content, long olympiads_id, String u_name) {
         this.id = id;
         this.name = name;
         this.content = content;
         this.olympiads_id = olympiads_id;
+        this.u_name = u_name;
     }
 
     public long getId() {
@@ -31,6 +33,10 @@ public class MaterialsDB implements Serializable {
         return olympiads_id;
     }
 
+    public String getU_name(){
+        return u_name;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -45,5 +51,8 @@ public class MaterialsDB implements Serializable {
 
     public void setOlympiads_id(long olympiads_id) {
         this.olympiads_id = olympiads_id;
+    }
+    public void setU_name(String u_name){
+        this.u_name = u_name;
     }
 }

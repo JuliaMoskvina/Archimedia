@@ -1,7 +1,5 @@
 package ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Date;
 import java.util.List;
 
@@ -36,9 +34,9 @@ public class Olympiads {
         return url;
     }
 
-    public Date getDate() {
+    public long getDate() {
 
-        return new Date(date);
+        return date;
     }
 
     public String getUniversity() {
@@ -65,9 +63,9 @@ public class Olympiads {
         this.url = url;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
 
-        this.date = date.getTime();
+        this.date = date;
     }
 
     public void setUniversity(String university) {

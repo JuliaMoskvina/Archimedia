@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,10 +60,17 @@ public class FavouriteOlympsAdapter extends BaseAdapter {
         // используем созданные, но не используемые view
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.list_item, parent, false);
+            view = lInflater.inflate(R.layout.fo_item, parent, false);
         }
 
         OlympiadsDB odb = getOlympiadsDB(position);
+
+        TextView foname = view.findViewById(R.id.olympiad_name);
+        //TextView universityTV = view.findViewById(R.id.university);
+
+        foname.setText(odb.getName());
+        //universityTV.setText(p.getUniversity());
+
         return view;
     }
 

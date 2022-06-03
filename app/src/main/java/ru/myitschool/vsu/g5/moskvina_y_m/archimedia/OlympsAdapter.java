@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,8 @@ public class OlympsAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.list_item, parent, false);
         }
+
+        view.setBackgroundColor(Color.CYAN);
 
         Olympiads p = getOlympiads(position);
 

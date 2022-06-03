@@ -21,6 +21,7 @@ public class DataBase {
     private static final String OLYMPIADS_NAME="olympiad_name";
     private static final String MATERIALS_NAME="material_name";
     private static final String ID_FROM_OLYMPIADS="id_from_olympiads";
+    private static final String U_NAME="u_name";
     private static final String SUBJECT_ID="subject_id";
     private static final String URL="url";
     private static final String UNIVERSITY = "university";
@@ -37,7 +38,8 @@ public class DataBase {
     private static final int NUM_MATERIALS_ID = 0;
     private static final int NUM_MATERIALS_NAME = 1;
     private static final int NUM_ID_FROM_OLYMPIADS=2;
-    private static final int NUM_CONTENT=3;
+    private static final int NUM_CONTENT = 3;
+    private static final int NUM_U_NAME=4;
 
 
     private SQLiteDatabase mDataBase;
@@ -58,11 +60,12 @@ public class DataBase {
         return mDataBase.insert(TABLE_NAME, null, cv);
     }
 
-    public long insert_material(String materials_name, String content, int id_from_olympiads) {
+    public long insert_material(String materials_name, String content, long id_from_olympiads, String u_name) {
         ContentValues cv=new ContentValues();
         cv.put(MATERIALS_NAME, materials_name);
         cv.put(CONTENT, content);
         cv.put(ID_FROM_OLYMPIADS,id_from_olympiads);
+        cv.put(U_NAME, u_name);
         return mDataBase.insert(TABLE_NAME_2, null, cv);
     }
 
@@ -83,6 +86,7 @@ public class DataBase {
         ContentValues cv=new ContentValues();
         cv.put(MATERIALS_NAME, mdb.getName());
         cv.put(CONTENT, mdb.getContent());
+        cv.put(U_NAME, mdb.getU_name());
         return mDataBase.update(TABLE_NAME_2, cv, MATERIALS_ID + " = ?",new String[] { String.valueOf(mdb.getId())});
     }
 
@@ -115,7 +119,7 @@ public class DataBase {
         String university = mCursor.getString(NUM_UNIVERSITY);
         int subject_id = mCursor.getInt(NUM_SUBJECT_ID);
         long date = mCursor.getLong(NUM_DATE);
-        return new OlympiadsDB(id, olympiads_name, url, date, university, subject_id);
+       return new OlympiadsDB(id, olympiads_name, url, date, university, subject_id);
 
     }
 
@@ -126,8 +130,9 @@ public class DataBase {
         String name = mCursor.getString(NUM_MATERIALS_NAME);
         String content = mCursor.getString(NUM_CONTENT);
         int id_from_olympiad = mCursor.getInt(NUM_ID_FROM_OLYMPIADS);
+        String u_name = mCursor.getString(NUM_U_NAME);
 
-        return new MaterialsDB(id, name, content, id_from_olympiad);
+        return new MaterialsDB(id, name, content, id_from_olympiad, u_name);
 
 
 
@@ -157,8 +162,8 @@ public class DataBase {
         return arrO;
     }
 
-    public ArrayList<MaterialsDB> selectAllMaterials(long olymp_id) {
-        Cursor mCursor = mDataBase.query(TABLE_NAME_2, null, ID_FROM_OLYMPIADS+"=?", new String[]{String.valueOf(olymp_id)}, null, null, null);
+    public ArrayList<MaterialsDB> selectAllMaterials(long olymp_id, String material_name) {
+       Cursor mCursor = mDataBase.query(TABLE_NAME_2, null, ID_FROM_OLYMPIADS+"=? AND " + MATERIALS_NAME+"=?", new String[]{String.valueOf(olymp_id), material_name}, null, null, null);
 
         ArrayList<MaterialsDB> arrm = new ArrayList<MaterialsDB>();
         mCursor.moveToFirst();
@@ -168,7 +173,8 @@ public class DataBase {
                 String name = mCursor.getString(NUM_MATERIALS_NAME);
                 String content = mCursor.getString(NUM_CONTENT);
                 int id_from_olympiads = mCursor.getInt(NUM_ID_FROM_OLYMPIADS);
-                arrm.add(new MaterialsDB(id, name, content, id_from_olympiads));
+                String u_name = mCursor.getString(NUM_U_NAME);
+                arrm.add(new MaterialsDB(id, name, content, id_from_olympiads, u_name));
             } while (mCursor.moveToNext());
         }
         return arrm;
@@ -186,13 +192,14 @@ public class DataBase {
                     OLYMPIADS_NAME+ " TEXT, " +
                     URL + " TEXT, " +
                     UNIVERSITY + " TEXT,"+
-                    SUBJECT_ID + "INTEGER,"+
+                    SUBJECT_ID + " INTEGER,"+
                     DATE+" LONG);";
             String query_materials = "CREATE TABLE " + TABLE_NAME_2 + " (" +
                     MATERIALS_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     MATERIALS_NAME+ " TEXT, " +
-                    ID_FROM_OLYMPIADS +"INTEGER,"+
+                    ID_FROM_OLYMPIADS +" INTEGER,"+
                     CONTENT+" TEXT," +
+                    U_NAME+" TEXT,"+
                     "FOREIGN KEY("+ID_FROM_OLYMPIADS+") REFERENCES "+TABLE_NAME+"("+OLYMPIADS_ID+")"+
                     ");";
 
