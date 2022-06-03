@@ -8,29 +8,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Gallery;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import java.util.List;
 
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.DataBase;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.MaterialsDB;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.DB.OlympiadsDB;
+import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.FavouriteMaterialsAdapter;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.MaterialsActivity;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.OlympiadsList;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.R;
 import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.databinding.FragmentGalleryBinding;
-import ru.myitschool.vsu.g5.moskvina_y_m.archimedia.entities.Olympiads;
 
 public class GalleryFragment extends Fragment {
     ListView lv;
     FavouriteOlympsAdapter foAdapter;
-    GalleryFragment galleryFragment;
+
+    FavouriteMaterialsAdapter fmadapter;
 
 
     private FragmentGalleryBinding binding;
@@ -41,6 +40,9 @@ public class GalleryFragment extends Fragment {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         foAdapter = new FavouriteOlympsAdapter(this.getContext());
+        fmadapter = new FavouriteMaterialsAdapter(this.getContext());
+
+
 
         lv = root.findViewById(R.id.fo_list);
 
@@ -61,13 +63,37 @@ public class GalleryFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                foAdapter.remove(i);
+
+              remove(i);
+
 
 
                 return true;
             }
+            private void remove(int i) {
+
+                DataBase db = new DataBase(ccontext );
+                db.deleteOlympiads(i);
+                db.deleteMaterials(i);
+
+
+
+
+                foAdapter.notifyDataSetChanged();
+                foAdapter.notifyDataSetInvalidated();
+
+
+
+
+                //DataBase db = new DataBase(galleryFragment.getContext());
+                //db.deleteOlympiads(i);
+                //List<OlympiadsDB> listo = db.selectAllOlympiads();
+                //foAdapter.refresh(listo);
+            }
+
 
         });
+
 
 
 
@@ -76,12 +102,7 @@ public class GalleryFragment extends Fragment {
         return root;
     }
 
-    private void remove(int indexOfChild) {
-        DataBase db = new DataBase(galleryFragment.getContext());
-        db.deleteOlympiads(indexOfChild);
-        List<OlympiadsDB> listo = db.selectAllOlympiads();
-        foAdapter.refresh(listo);
-    }
+
 
 
     @Override
@@ -114,6 +135,12 @@ public class GalleryFragment extends Fragment {
 
 
         }
+    }
+    private Context ccontext;
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+       ccontext = context;
     }
 
     @Override

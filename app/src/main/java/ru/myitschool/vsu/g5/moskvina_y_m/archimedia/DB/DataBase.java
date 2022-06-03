@@ -104,8 +104,8 @@ public class DataBase {
         mDataBase.delete(TABLE_NAME, OLYMPIADS_ID + " = ?", new String[] { String.valueOf(id) });
     }
 
-    public void deleteMaterials(long id) {
-        mDataBase.delete(TABLE_NAME_2, MATERIALS_ID + " = ?", new String[] { String.valueOf(id) });
+    public void deleteMaterials(long id_from_olympiads) {
+        mDataBase.delete(TABLE_NAME_2, ID_FROM_OLYMPIADS + " = ?", new String[] { String.valueOf(id_from_olympiads) });
     }
 
     //Select

@@ -24,7 +24,7 @@ public class FavouriteMaterialsAdapter extends BaseAdapter {
     private LayoutInflater lInflater;
     private ArrayList<MaterialsDB> objects;
 
-    FavouriteMaterialsAdapter(Context context) {
+    public FavouriteMaterialsAdapter(Context context) {
         ctx = context;
         objects = new ArrayList<>();
         lInflater = (LayoutInflater) ctx
@@ -77,7 +77,7 @@ public class FavouriteMaterialsAdapter extends BaseAdapter {
     }
 
 
-        MaterialsDB getMaterialsDB ( int position){
+        public MaterialsDB getMaterialsDB(int position){
             return ((MaterialsDB) getItem(position));
         }
 
