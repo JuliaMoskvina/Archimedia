@@ -8,7 +8,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -21,6 +26,7 @@ public class FavouriteMaterials extends AppCompatActivity {
     String name;
     public long i;
     FavouriteMaterialsAdapter fmadapter;
+
 
 
     @Override
@@ -36,8 +42,15 @@ public class FavouriteMaterials extends AppCompatActivity {
         lv.setAdapter(fmadapter);
 
 
+
+
         new FavouriteMaterials.LoadAllMaterialsTask(this, i, name)
                 .execute();
+
+
+
+
+
 
        // if ( materialsDBS == null){
             //setContentView(R.layout.ifempty);
@@ -85,6 +98,7 @@ public class FavouriteMaterials extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<MaterialsDB> materialsDBS) {
             activity.fmadapter.refresh(materialsDBS);
+
 
 
         }

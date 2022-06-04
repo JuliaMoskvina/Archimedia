@@ -10,9 +10,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +73,15 @@ public class FavouriteMaterialsAdapter extends BaseAdapter {
 
         MaterialsDB mdb = getMaterialsDB(position);
 
-        TextView material = view.findViewById(R.id.fmaterial);
-        material.setText(mdb.getU_name());
+
+
+
+            TextView material = view.findViewById(R.id.fmaterial);
+            material.setText(mdb.getU_name());
+
+
+
+
 
 
 
